@@ -1,7 +1,7 @@
 {
   "name": "nostale-cryptography",
   "version": "1.0.0",
-  "description": "",
+  "description": "The NosTale Client, Server and Archive cryptographic algorithms for Node.js.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
