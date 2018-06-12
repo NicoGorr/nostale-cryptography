@@ -1,6 +1,6 @@
 {
   "name": "nostale-cryptography",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The NosTale Client, Server and Archive cryptographic algorithms for Node.js.",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/NicoGorr/nostale-cryptography.git"
   },
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": ">=8"
+  },
+  "author": "Niccolò Gorraz <gorraz.nico@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/NicoGorr/nostale-cryptography/issues"
   },
@@ -19,5 +22,11 @@
   "devDependencies": {
     "snazzy": "^7.1.1",
     "standard": "^11.0.1"
-  }
+  },
+  "keywords": [
+    "nostale",
+    "nos",
+    "crypto",
+    "cryptography"
+  ]
 }
