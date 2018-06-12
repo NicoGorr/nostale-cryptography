@@ -1,6 +1,6 @@
 {
   "name": "nostale-cryptography",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "The NosTale Client, Server and Archive cryptographic algorithms for Node.js.",
   "main": "index.js",
   "scripts": {
