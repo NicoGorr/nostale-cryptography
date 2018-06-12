@@ -1,0 +1,23 @@
+{
+  "name": "nostale-cryptography",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicoGorr/nostale-cryptography.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicoGorr/nostale-cryptography/issues"
+  },
+  "homepage": "https://github.com/NicoGorr/nostale-cryptography#readme",
+  "devDependencies": {
+    "snazzy": "^7.1.1",
+    "standard": "^11.0.1"
+  }
+}
