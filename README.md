@@ -36,7 +36,75 @@ const encryptedSession = nosCrypto.encryptSession(session)
 const encryptedPassword = nosCrypto.encryptPassword(password) // NosTale Gameforge
 const encryptedPasswordLegacy = nosCrypto.encryptPasswordLegacy(password) // NosTale Vendetta
 
-const version = nosCrypto.createVersion(nostalePath)
+const version = nosCrypto.createVersion(nostalePath) // Returns a Promise
 
 const checksumHash = nosCrypto.createChecksumHash(username, nostalePath) // Returns a Promise
+```
+
+Example:
+
+```js
+'use strict'
+
+const { pipeline } = require('stream')
+const iconv = require('iconv-lite')
+const net = require('net')
+const nosCrypto = require('nostale-cryptography/client')
+
+const host = '<NosTale IP>'
+const port = <NosTale Port>
+
+const socket = net.connect(port, host, () => {
+  const encryptStream = nosCrypto.createCipher()
+  const decryptStream = nosCrypto.createDecipher()
+
+  const encodingStream = iconv.encodeStream('win1252')
+  const decodingStream = iconv.decodeStream('win1252')
+
+  pipeline(
+    encodingStream,
+    encryptStream,
+    socket,
+    decryptStream,
+    decodingStream,
+    (err) => {
+      if (err) {
+        throw err
+      }
+
+      console.log('Game closed because stream pipeline closed.')
+    }
+  )
+
+  buildLoginPacket().then((loginPacket) => {
+    console.log(loginPacket)
+
+    encodingStream.write(loginPacket)
+
+    decodingStream.on('data', (packet) => {
+      console.log(packet)
+
+      // ...
+      // Handle packet
+      // ...
+    })
+  })
+})
+
+async function buildLoginPacket () {
+  const nostalePath = 'C:\\Program Files (x86)\\NosTale_IT'
+  const username = '<Your username>'
+  const password = '<Your password>'
+
+  const encodedUsername = iconv.encode(username, 'win1252')
+  const encodedPassword = iconv.encode(password, 'win1252')
+
+  const random = Math.floor(Math.random() * 9999999)
+  const encryptedPassword = nosCrypto.encryptPassword(encodedPassword)
+  const version = await nosCrypto.createVersion(nostalePath)
+  const checksumHash = await nosCrypto.createChecksumHash(encodedUsername, nostalePath)
+
+  return `NoS0575 ${random} ${username} ${encryptedPassword} ${version} 0 ${checksumHash}`
+}
+
 ```
