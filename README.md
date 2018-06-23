@@ -2,6 +2,8 @@
 
 The NosTale Client, Server and Archive cryptographic algorithms for Node.js.
 
+**NB:** Arguments wrapped into square brackets are optional.
+
 ## Installation
 
 Using npm:
@@ -22,6 +24,7 @@ const nostalePath = 'C:\\Program Files (x86)\\NosTale_IT'
 const username = Buffer.from('myUsername')
 const password = Buffer.from('myPassword')
 const session = 123456
+const versionString = '0.9.3.3087'
 
 // To get the Login Crypto you must pass nothing.
 const encryptLoginStream = nosCrypto.createCipher()
@@ -36,9 +39,17 @@ const encryptedSession = nosCrypto.encryptSession(session)
 const encryptedPassword = nosCrypto.encryptPassword(password) // NosTale Gameforge
 const encryptedPasswordLegacy = nosCrypto.encryptPasswordLegacy(password) // NosTale Vendetta
 
-const version = nosCrypto.createVersion(nostalePath) // Returns a Promise
+// On Windows
+const version = nosCrypto.createVersion(nostalePath [, directx]) // Returns a Promise
 
-const checksumHash = nosCrypto.createChecksumHash(username, nostalePath) // Returns a Promise
+// On Linux/macOS
+const version = nosCrypto.createVersion(versionString) // Returns a Promise
+/*
+You can find the Client version by right clicking on
+NostaleClientX.exe > Properties > Details
+*/
+
+const checksumHash = nosCrypto.createChecksumHash(username, nostalePath [, directx, opengl]) // Returns a Promise
 ```
 
 Example:
